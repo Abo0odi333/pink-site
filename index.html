@@ -1418,7 +1418,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const productCard = e.target.closest('.product-card');
                 const name = productCard.querySelector('.product-name').textContent;
                 const priceString = productCard.querySelector('.price').textContent;
-                const price = parseFloat(priceString.replace(' $', '').trim());
+                const price = parseFloat(priceString.replace(' ر.س', '').trim());
                 const product = { name, price };
                 addToCart(product);
             });
@@ -1448,7 +1448,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="product-sub">${product.sub}</div>
                 <div class="product-desc" ${descStyle}>${product.desc}</div>
                 <div class="product-price">
-                  <span class="price">${parseFloat(product.price).toFixed(2)} $</span>
+                  <span class="price">${parseFloat(product.price).toFixed(2)} ر.س</span>
                   <span class="old-price">${product.oldPrice}</span>
                 </div>
                 <button class="btn btnproduct">أضف إلى السلة</button>

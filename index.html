@@ -1272,7 +1272,7 @@ hr{
  </div>
  <div class="cart-footer">
  <a id="checkout-btn" href="#" class="btn" target="_blank">
- <i class="fab fa-whatsapp"></i> إتمام الطلب (المجموع: <span id="cart-total">0</span> $)
+ <i class="fab fa-whatsapp"></i> إتمام الطلب (المجموع: <span id="cart-total">0</span> ر.س)
  </a>
  <button id="clear-cart-btn" class="btn btn-outline">
  <i class="fas fa-trash"></i> حذف كل المنتجات
@@ -1342,15 +1342,15 @@ document.addEventListener('DOMContentLoaded', () => {
             cartCounter.textContent = cart.length;
             cart.forEach((item, index) => {
                 total += item.price; 
-                whatsappMessage += `*${index + 1}. ${item.name}*\n    - السعر: ${item.price.toFixed(2)} $\n`;
+                whatsappMessage += `*ر.س{index + 1}. ر.س{item.name}*\n    - السعر: ر.س{item.price.toFixed(2)} ر.س\n`;
                 const cartItemElement = document.createElement('div');
                 cartItemElement.classList.add('cart-item');
                 cartItemElement.innerHTML = `
                     <div class="cart-item-details">
-                        <p class="cart-item-name">${item.name}</p>
-                        <p class="cart-item-price">${item.price.toFixed(2)} $</p>
+                        <p class="cart-item-name">ر.س{item.name}</p>
+                        <p class="cart-item-price">ر.س{item.price.toFixed(2)} ر.س</p>
                     </div>
-                    <button class="cart-item-remove-btn" data-index="${index}">
+                    <button class="cart-item-remove-btn" data-index="ر.س{index}">
                         &times;
                     </button>
                 `;
@@ -1358,9 +1358,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         cartTotalSpan.textContent = total.toFixed(2);
-        whatsappMessage += `\n*المجموع الكلي: ${total.toFixed(2)} $*`;
+        whatsappMessage += `\n*المجموع الكلي: ر.س{total.toFixed(2)} ر.س*`;
         const encodedMessage = encodeURIComponent(whatsappMessage);
-        checkoutBtn.href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+        checkoutBtn.href = `https://wa.me/ر.س{phoneNumber}?text=ر.س{encodedMessage}`;
     }
 
     // --- وظائف السلة ---
@@ -1418,7 +1418,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const productCard = e.target.closest('.product-card');
                 const name = productCard.querySelector('.product-name').textContent;
                 const priceString = productCard.querySelector('.price').textContent;
-                const price = parseFloat(priceString.replace(' $', '').trim());
+                const price = parseFloat(priceString.replace(' ر.س', '').trim());
                 const product = { name, price };
                 addToCart(product);
             });
@@ -1436,20 +1436,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         products.forEach(product => {
-            const nameStyle = (product.nameSize && product.nameSize.trim() !== '') ? `style="font-size: ${product.nameSize}"` : '';
-            const descStyle = (product.descSize && product.descSize.trim() !== '') ? `style="font-size: ${product.descSize}"` : '';
+            const nameStyle = (product.nameSize && product.nameSize.trim() !== '') ? `style="font-size: ر.س{product.nameSize}"` : '';
+            const descStyle = (product.descSize && product.descSize.trim() !== '') ? `style="font-size: ر.س{product.descSize}"` : '';
             const productCardHTML = `
             <div class="product-card">
               <div class="product-image">
-                <img src="${product.imageURL}" alt="${product.name}" />
+                <img src="ر.س{product.imageURL}" alt="ر.س{product.name}" />
               </div>
               <div class="product-info">
-                <div class="product-name" ${nameStyle}>${product.name}</div>
-                <div class="product-sub">${product.sub}</div>
-                <div class="product-desc" ${descStyle}>${product.desc}</div>
+                <div class="product-name" ر.س{nameStyle}>ر.س{product.name}</div>
+                <div class="product-sub">ر.س{product.sub}</div>
+                <div class="product-desc" ر.س{descStyle}>ر.س{product.desc}</div>
                 <div class="product-price">
-                  <span class="price">${parseFloat(product.price).toFixed(2)} $</span>
-                  <span class="old-price">${product.oldPrice}</span>
+                  <span class="price">ر.س{parseFloat(product.price).toFixed(2)} ر.س</span>
+                  <span class="old-price">ر.س{product.oldPrice}</span>
                 </div>
                 <button class="btn btnproduct">أضف إلى السلة</button>
               </div>
@@ -1500,7 +1500,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (targetGrid) {
                     displayProducts(categoryProducts, targetGrid);
                 } else {
-                    console.warn(`لم يتم العثور على شبكة العرض بالـ ID: ${gridId}`);
+                    console.warn(`لم يتم العثور على شبكة العرض بالـ ID: ر.س{gridId}`);
                 }
             }
 
@@ -1543,11 +1543,11 @@ document.addEventListener('DOMContentLoaded', () => {
             allReviewsHTML += `
             <div class="review-card">
                 <div class="review-card-header">
-                    <h3 class="review-card-name">${review.name}</h3>
-                    <div class="review-card-rating">${ratingHTML}</div>
+                    <h3 class="review-card-name">ر.س{review.name}</h3>
+                    <div class="review-card-rating">ر.س{ratingHTML}</div>
                 </div>
-                <p class="review-card-comment">${review.comment}</p>
-                <div class="review-card-timestamp">${reviewDate}</div>
+                <p class="review-card-comment">ر.س{review.comment}</p>
+                <div class="review-card-timestamp">ر.س{reviewDate}</div>
             </div>`;
         });
         
@@ -1564,7 +1564,7 @@ document.addEventListener('DOMContentLoaded', () => {
             nextBtn.style.display = 'block';
 
             function updateSliderPosition() {
-                slider.style.transform = `translateX(${currentReviewIndex * 100}%)`; 
+                slider.style.transform = `translateX(ر.س{currentReviewIndex * 100}%)`; 
             }
 
             function showNext() {

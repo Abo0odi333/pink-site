@@ -1342,13 +1342,13 @@ document.addEventListener('DOMContentLoaded', () => {
             cartCounter.textContent = cart.length;
             cart.forEach((item, index) => {
                 total += item.price; 
-                whatsappMessage += `*${index + 1}. ${item.name}*\n    - السعر: ${item.price.toFixed(2)} $\n`;
+                whatsappMessage += `*${index + 1}. ${item.name}*\n    - السعر: ${item.price.toFixed(2)} ر.س\n`;
                 const cartItemElement = document.createElement('div');
                 cartItemElement.classList.add('cart-item');
                 cartItemElement.innerHTML = `
                     <div class="cart-item-details">
                         <p class="cart-item-name">${item.name}</p>
-                        <p class="cart-item-price">${item.price.toFixed(2)} $</p>
+                        <p class="cart-item-price">${item.price.toFixed(2)} ر.س</p>
                     </div>
                     <button class="cart-item-remove-btn" data-index="${index}">
                         &times;
